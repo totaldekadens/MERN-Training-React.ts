@@ -14,6 +14,7 @@ The project he did during the training left me with some development opportuniti
 
 To do:
 
+* Convert from JavaScript to TypeScript ✅ (few "any´s left)
 * Convert all class-components to functional components. ✅
 * Change axios to fetch. ✅
 * Make it possible to delete player (client) ✅
