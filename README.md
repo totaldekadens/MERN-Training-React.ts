@@ -42,7 +42,7 @@ For comparison check folder: original_files
     -	Npm i
     -	Npm start
 
-Redirect to folder frontend:
+* Redirect to folder frontend:
     -	Npm i
     -	Npm run dev
 
