@@ -10,7 +10,7 @@ Languages/Frameworks/Libraries the project touches:
 * Node.js
 * Materialize
 
-The project he did during the training left me with some development opportunities (mainly client side). So that is what I will continue with here.
+The project he did during the training left me with some development opportunities. So that is what I will continue with here.
 
 To do:
 
