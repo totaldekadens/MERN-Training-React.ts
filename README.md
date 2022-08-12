@@ -10,7 +10,7 @@ Languages/Frameworks/Libraries the project touches:
 * Node.js
 * Materialize
 
-The project he did during the training left me with some development opportunities (mainly client side). So that is what I will continue with here.
+The project he did during the training left me with some development opportunities. So that is what I will continue with here.
 
 To do:
 
@@ -38,10 +38,12 @@ For comparison check folder: original_files
 
 * Open project in your code editor
 
-* Open terminal. Make sure you are standing in the backend folder.
+* Open terminal. Make sure you are standing in the "server" folder.
     -	Npm i
     -	Npm start
 
-Redirect to folder frontend and repeat the steps. 
+* Redirect to "client"
+    -	Npm i
+    -	Npm run dev
 
 
