@@ -1,4 +1,4 @@
-import { Player } from "../data/data";
+import { Player } from "../data/commonData";
 
 interface Body {
         method: string

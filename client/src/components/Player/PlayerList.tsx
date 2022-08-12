@@ -2,11 +2,9 @@ import { useContext, FC } from 'react';
 import { deletePlayer } from '../../helpers/fetchHelper';
 import { PlayerContext } from '../Context/PlayerProvider';
 import { CurrentPlayerContext } from '../Context/CurrentPlayerProvider';
-import { Player } from '../../data/data';
+import { Player } from '../../data/commonData';
 
-interface Props{}
-
-const PlayerList: FC<Props> = () => {
+const PlayerList: FC = () => {
 
     // Context
     const {players} = useContext(PlayerContext)

@@ -1,17 +1,15 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 import { useState } from "react";
 import validateForm from "../../validation/validateForm";
 import { addPlayer } from '../../helpers/fetchHelper';
 import PlayerForm from './PlayerForm';
 import { defaultValues } from '../../helpers/common';
-import { DefaultValues, Errors, Player } from '../../data/data';
+import { Player } from '../../data/commonData';
 
-interface Props {}
-
-const AddPlayerForm: FC<Props> = () => {
+const AddPlayerForm: FC = () => {
     // States
     const [newPlayer, setNewPlayer] = useState<Player>(defaultValues)
-    const [errors, setErrors] = useState<Errors>(defaultValues)
+    const [errors, setErrors] = useState<Player>(defaultValues)
     
     // Text to PlayerForm
     const textToForm = {
@@ -26,8 +24,8 @@ const AddPlayerForm: FC<Props> = () => {
 
             // Validates values from form
             const checkError = validateForm(newPlayer);
-            
-            if(Object.keys(checkError).length > 0) {
+
+            if(Object.keys(checkError).length > 1) {
                 setErrors(checkError)
                 return
             }

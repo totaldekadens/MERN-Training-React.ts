@@ -1,9 +1,6 @@
 import { getAllPlayers} from "../../helpers/fetchHelper";
-import React, { createContext, FC, PropsWithChildren, useState, useEffect, useRef } from "react";
-import { Player } from "../../data/data";
-
-interface Props {}
-
+import React, { createContext, FC, PropsWithChildren, useState, useEffect } from "react";
+import { Player } from "../../data/commonData";
 interface PlayerContextData {
     players: Player[] | []
     setPlayers: React.Dispatch<React.SetStateAction<[] | Player[]>>
@@ -14,7 +11,7 @@ export const PlayerContext = createContext<PlayerContextData>({
     setPlayers: () => {}
 })
 
-export const PlayerProvider: FC<PropsWithChildren<Props>> = (props) => {
+export const PlayerProvider: FC<PropsWithChildren> = (props) => {
     const [players, setPlayers] = useState<[] | Player[]>([]);
 
     useEffect( () => {

@@ -1,8 +1,6 @@
 import { FC } from 'react'
 
-interface Props {}
-
-const Footer: FC<Props>  = () => {
+const Footer: FC  = () => {
     return (
         <div>Footer</div>
     )

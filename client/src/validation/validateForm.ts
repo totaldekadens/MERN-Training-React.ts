@@ -1,33 +1,51 @@
-import { Player, Errors } from "../data/data";
+import { Player } from "../data/commonData";
 
 const validateForm = (player: Player) => {
-    const errors: Errors | any  =  {};  // Check the "any" later
+    const errors: Player | any  =  {}
+    
+    errors.requiredInputs = [
+        "firstName", "lastName", "email"
+    ]
 
-    if(player.firstName == "") {
-        errors.firstName = 'Required';
-    } 
+    // Check required
+    errors.required?.forEach((item: string) => {
+        Object.entries(player).forEach(([key, value]) => {
+            if(key == item) {
+                if(value == "") {
+                    errors[key] = 'Required';
+                }
+            }
+        });
+    }) 
 
-    if(player.lastName == "") {
-        errors.lastName = 'Required';
-    } 
+    // Check only letters and numbers
+    Object.entries(player).forEach(([key, value]) => {
+        if(key == "firstName" || key == "lastName") {
+            const checkLetter = onlyLetters(value)
+            if(!checkLetter) {
+                errors[key] = 'Only letters! Please check';
+            }
+        } 
 
-    if(player.email == "") {
-        errors.email = 'Required';
-        
-    } else if(!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(player.email)) {
-        errors.email = 'invalid email address'
+        if(key == "phone") {
+            const checkDigits = onlyNumbers(value)
+
+            if(!checkDigits) {
+                errors[key] = 'Only numbers! Please check';
+            }
+        }
+    });
+
+    // Email
+    if(!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(player.email)) {
+        errors.email = 'Invalid email address'
     }
 
-    // Check if the number validation still work after the change
+    // Phone
     if(player.phone) {
-        const checkDigits = onlyNumbers(player.phone)
-
-        if(!checkDigits) {
-            errors.phone = 'Only numbers! Please check';
-        } 
         
-        else if(player.phone.length < 6) {
-            errors.phone = 'Phonenumber needs to h more than 6 numbers';
+        if(player.phone.length < 6) {
+            errors.phone = 'Phonenumber needs to have more than 6 numbers';
         } 
     }
 
@@ -37,6 +55,10 @@ const validateForm = (player: Player) => {
 
 export const onlyNumbers = (str: string) => {
     return /^[0-9]+$/.test(str);
+}
+
+export const onlyLetters = (str: string) => {
+    return /^[a-zA-Z]+$/.test(str);
 }
 
 export default validateForm

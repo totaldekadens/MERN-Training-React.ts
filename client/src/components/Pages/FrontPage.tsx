@@ -2,9 +2,7 @@ import React, { FC } from 'react';
 import PlayerList from "../Player/PlayerList";
 import PlayerSingle from "../Player/PlayerSingle";
 
-interface Props{}
-
-const FrontPage: FC<Props> = () => {
+const FrontPage: FC = () => {
 
     return (
         <div className="row">

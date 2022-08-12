@@ -3,9 +3,7 @@ import Modal from '../Modals/Modal';
 import UpdatePlayerForm from '../Interaction/UpdatePlayerForm';
 import { CurrentPlayerContext } from '../Context/CurrentPlayerProvider';
 
-interface Props{}
-
-const PlayerSingle: FC<Props> = () => {
+const PlayerSingle: FC = () => {
 
     // Context
     const {currentPlayer} = useContext(CurrentPlayerContext);

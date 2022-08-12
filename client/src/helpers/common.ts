@@ -1,7 +1,7 @@
 export const defaultValues = {
     firstName: "",
     lastName: "",
-    email: "",
+    email: "" ,
     phone: "",
-    image: "",
+    image: ""
 }

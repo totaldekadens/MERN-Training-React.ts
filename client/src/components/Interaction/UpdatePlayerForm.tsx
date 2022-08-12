@@ -1,22 +1,20 @@
-import React, { FC, useContext } from 'react';
+import { FC, useContext } from 'react';
 import { useState } from "react";
 import validateForm from "../../validation/validateForm";
 import { modifyPlayer } from '../../helpers/fetchHelper';
 import PlayerForm from './PlayerForm';
 import { defaultValues } from '../../helpers/common';
 import { CurrentPlayerContext } from '../Context/CurrentPlayerProvider';
-import { Player } from '../../data/data';
+import { Player } from '../../data/commonData';
 
-interface Props {}
-
-const UpdatePlayerForm: FC<Props> = () => {
+const UpdatePlayerForm: FC = () => {
 
     // Context
     const {currentPlayer, setCurrentPlayer } = useContext(CurrentPlayerContext);
 
     // States
     const [updatePlayer, setUpdatePlayer] = useState<Player | any>(currentPlayer) // Check "any" later
-    const [errors, setErrors] = useState(defaultValues)
+    const [errors, setErrors] = useState<Player>(defaultValues)
 
     // Text to PlayerForm
     const textToForm = {
@@ -33,7 +31,7 @@ const UpdatePlayerForm: FC<Props> = () => {
             // Validates values from form
             const checkError = validateForm(updatePlayer);
             
-            if(Object.keys(checkError).length > 0) {
+            if(Object.keys(checkError).length > 1) {
                 setErrors(checkError)
                 return
             }

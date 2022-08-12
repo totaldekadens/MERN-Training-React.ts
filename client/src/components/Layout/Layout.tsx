@@ -5,9 +5,7 @@ import { PlayerProvider } from "../Context/PlayerProvider";
 import { CurrentPlayerProvider } from "../Context/CurrentPlayerProvider";
 import { FC } from "react";
 
-interface Props {}
-
-const Layout: FC<Props> = () => {
+const Layout: FC = () => {
     return (
         <div className="container-fluid">
             <PlayerProvider>
