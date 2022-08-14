@@ -44,7 +44,7 @@ const PlayerList: FC = () => {
         <div>
             <ul className="collection with-header">
                 <li className="collection-header"><h4>Players</h4></li>
-                {players ? players.map((item) => (
+                {players.length > 0 ? players.map((item) => (
                     <div 
                         key={item._id} 
                         className="collection-item"
@@ -65,7 +65,7 @@ const PlayerList: FC = () => {
                     </div>
                 )) 
                 : 
-                    <h3>Players not found</h3>
+                    <p>No players added yet</p>
                 }
             </ul>
         </div> 

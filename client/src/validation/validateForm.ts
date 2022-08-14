@@ -1,56 +1,78 @@
-import { Player } from "../data/commonData";
+import { Player} from "../data/commonData";
+import playerValidationList from "../data/validationList";
 
 const validateForm = (player: Player) => {
-    const errors: Player | any  =  {}
     
-    errors.requiredInputs = [
-        "firstName", "lastName", "email"
-    ]
-
-    // Check required
-    errors.requiredInputs?.forEach((item: string) => {
-        
-        Object.entries(player).forEach(([key, value]) => {
-            
-            if(key == item) {
-                if(value == "") {
-                    errors[key] = 'Required';
-                } 
-            }
-        });
-    }) 
-
+    const errors: Player | any =  {}  // Fix type later
     
     Object.entries(player).forEach(([key, value]) => {
         
-        // Check only letters
-        if(key == "firstName" || key == "lastName") {
-            const checkLetter = onlyLettersAndDash(value)
-            if(!checkLetter) {
-                errors[key] = 'Only letters! Please check';
-            }
-        } 
+        playerValidationList.forEach((item) => {
 
-        // Check only numbers
-        if(key == "phone") {
-            if(player.phone) { 
-                const checkDigits = onlyNumbers(value)
+            if(item.name == key) {
 
-                if(!checkDigits) {
-                    errors[key] = 'Only numbers! Please check';
-                } else if(value.length < 6) {
-                    errors[key] = 'Phonenumber needs to have more than 6 numbers';
+                // Required
+                if(item.required && value == "") {
+                    errors[key] = 'Required';
+                }
+
+                if(value != "") {
+
+                    // Email
+                    if(item.email && value != "") {
+                        if(!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(value)) {
+                            errors[key] = 'Invalid email address' 
+                        }
+                    }
+
+                    // Only letters
+                    if(item.onlyLetters) {
+                        const checkLetter = onlyLetters(value)
+
+                        if(!checkLetter) {
+                            errors[key] = 'You are only allowed to use letters';
+                        }
+                    }
+
+                    // Only letters and dash
+                    if(item.onlyLettersAndDash) {
+                        const checkLetterDash = onlyLettersAndDash(value)
+
+                        if(!checkLetterDash ) {
+                            errors[key] = 'You are only allowed to use letters and "-"';
+                        }
+                    }
+
+                    // Only letters, dash and space
+                    if(item.onlyLettersDashAndSpace) {
+                        const checkLetterDashAndSpace = onlyLettersDashAndSpace(value)
+
+                        if(!checkLetterDashAndSpace ) {
+                            errors[key] = 'You are only allowed to use letters, space and "-"';
+                        }
+                    }
+
+                    // Only numbers
+                    if(item.onlyNumbers) {
+                        const checkDigits = onlyNumbers(value)
+
+                        if(!checkDigits) {
+                            errors[key] = 'You are only allowed to use numbers';
+                        }
+                    }
+
+                    // Min length
+                    if(value.length < item.minLenght) {
+                        errors[key] = `Minimum length is ${item.minLenght} characters`;
+                    }
+
+                    // Max length
+                    if(value.length > item.maxLength) {
+                        errors[key] = `Max length is ${item.maxLength} characters`;
+                    }
                 }
             }
-        }
-
-        // Check email
-        if(key == "email") {
-            if(!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(value)) {
-                errors[key] = 'Invalid email address'  // This comes before "Required", check!
-            }
-        }
-
+        })
     });
 
     return errors;
@@ -71,4 +93,8 @@ export const onlyLettersAndDash = (str: string) => {
     return /^[A-Za-z\u00C0-\u00ff_-]*$/.test(str);
 }
 
+// Approves only letters incl ÅÄÖ, "-" and " "
+export const onlyLettersDashAndSpace = (str: string) => {
+    return /^[A-Za-z\s\u00C0-\u00ff_-]*$/.test(str);
+}
 export default validateForm

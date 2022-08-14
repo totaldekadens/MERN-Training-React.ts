@@ -31,7 +31,7 @@ const UpdatePlayerForm: FC = () => {
             // Validates values from form
             const checkError = validateForm(updatePlayer);
             
-            if(Object.keys(checkError).length > 1) {
+            if(Object.keys(checkError).length > 0) {
                 setErrors(checkError)
                 return
             }

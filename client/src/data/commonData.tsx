@@ -12,5 +12,4 @@ export interface Player {
     phone?: string
     image?: string
     _id?: any
-    requiredInputs?: string[]
 }

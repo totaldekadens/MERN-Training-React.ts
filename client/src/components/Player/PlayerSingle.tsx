@@ -52,7 +52,7 @@ const PlayerSingle: FC = () => {
             {Object.keys(currentPlayer).length > 0 ? 
                 <UpdatePlayerForm />
             : 
-                <h3>Player was not found</h3>
+                <p>Player was not found</p>
             }
         </Modal> 
         </>
